@@ -1,0 +1,31 @@
+.no-border {
+  border: none;
+}
+
+.no-resize {
+  resize: none;
+}
+
+textarea:focus, input:focus {
+  outline: none;
+}
+.wide-textarea {
+  width: 150%; /* Adjust the width as needed */
+}
+input,textarea{
+  cursor:  pointer !important;
+  font-size: 12px;
+}
+.hide-scrollbar {
+  overflow-y: scroll; /* Enable vertical scrolling */
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none;  /* For Internet Explorer and Edge */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
+}
+
+.hidden {
+  display: none !important;
+}

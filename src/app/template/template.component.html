@@ -1,0 +1,66 @@
+<div class="d-flex justify-content-center pt-3">
+<div class="col-7">
+  <div id="pdf-content" class="col"  style=" cursor: pointer;">
+    <div class="text-center">
+
+      <input type="text" style="border:none;font-size:23px;font-weight: bold;" [(ngModel)]="username"  name="username"/>
+    </div>
+    <div class="text-center pt-3 justify-content-center d-flex ">
+      <textarea class=" no-border mr-2 no-resize wide-textarea hide-scrollbar col-4" style="width: auto;" [(ngModel)]="address" name="address" rows="2"></textarea>
+      <textarea class=" no-border mr-2 no-resize hide-scrollbar" [(ngModel)]="gmail" name="gmail" rows="1"></textarea>
+      <textarea class=" no-border mr-2 no-resize hide-scrollbar"  [(ngModel)]="mobile" name="mobile" rows="1"></textarea>
+    </div>
+    <hr>
+    <div>
+      <h4 style="font-weight: bold; color: purple;">Summary</h4>
+      <textarea class=" no-border mr-2 no-resize hide-scrollbar" style="width: 100%;" [(ngModel)]="summary" name="summary" rows="3"></textarea>
+      <hr>
+    </div>
+    <div>
+      <div class="d-flex justify-content-between">
+      <h4 style="font-weight: bold; color: purple;">Work Experience</h4>
+      <button class="btn btn-primary" (click)="addField()">Add</button>
+    </div>
+
+      <div *ngFor="let field of fields; let i = index">
+        <input class="no-border mr-2 no-resize" style="width: 100%;font-weight: bold;font-size: 15px;" [(ngModel)]="field.company" name="company{{i}}">
+        <textarea class=" no-border mr-2 no-resize hide-scrollbar" style="width: 100%;" [(ngModel)]="field.experience" name="experience{{i}}" rows="4" ></textarea>
+      </div>
+      <hr>
+
+    </div>
+    <div>
+      <div class="d-flex justify-content-between">
+
+      <h4 style="font-weight: bold; color: purple;">Education</h4>
+      <button class="btn btn-primary" (click)="addEducation()">Add</button>
+
+      </div>
+      <div *ngFor="let field of educations; let i = index">
+        <input class="no-border mr-2 no-resize" style="width: 100%;font-weight: bold;font-size: 15px;" [(ngModel)]="field.school" name="school{{i}}">
+        <textarea class=" no-border mr-2 no-resize hide-scrollbar" style="width: 100%;" [(ngModel)]="field.des" name="des{{i}}" rows="2" ></textarea>
+      </div>
+      <hr>
+      <div>
+        <h4 style="font-weight: bold; color: purple;">Skills</h4>
+        <textarea class=" no-border mr-2 no-resize hide-scrollbar" style="width: 100%;" [(ngModel)]="skills" name="skills" rows="2" ></textarea>
+
+        <hr>
+
+      </div>
+      <div>
+        <h4 style="font-weight: bold; color: purple;">Certifications & Acchievements</h4>
+        <textarea class=" no-border mr-2 no-resize hide-scrollbar"  (ngModelChange)="updateCertifications($event)" name="certifications" style="width: 100%;" [(ngModel)]="certificationsString" name="certifications" rows="3" ></textarea>
+
+        <hr>
+
+      </div>
+
+
+    </div>
+
+    <button class="btn btn-success" (click)="downloadPDF()">Download as PDF</button>
+  </div>
+</div>
+</div>
+
