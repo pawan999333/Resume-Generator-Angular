@@ -11,10 +11,10 @@ import html2canvas from 'html2canvas';
 export class TemplateComponent implements OnInit {
   url: any;
   upload: boolean=false;
-  username:any="Pawan Kumar Sharma";
-  address:any='plot no. 17, Alwar,Rajasthan 301001';
-  gmail:any='pawan@email.com';
-  mobile:any='1111111111';
+  username:any="Mike Johson";
+  address:any='Bengluru,India 121212';
+  gmail:any='abc@email.com';
+  mobile:any='1234567899';
   summary:any='Results-oriented Engineering Executive with a proven track record of optimizing project outcomes. Skilled in strategic project management and team leadership. Seeking a challenging executive role to leverage technical expertise and drive engineering excellence.';
   experience:any='Implemented cost-effective solutions, resulting in a 20% reduction in project expenses.Streamlined project workflows, enhancing overall efficiency by 25%.Led a team in successfully delivering a complex engineering project on time and within allocated budget.'
   company:any='google';
@@ -30,7 +30,7 @@ export class TemplateComponent implements OnInit {
 
   ];
   educations: Array<{ school: any, des: any }> = [
-    { school: 'Master of Science in Mechanical Engineering', des: 'University of Engineering and Technology' },
+    { school: 'Bachloer of Tech in Electronics Engineeringg', des: 'Indian Institute of Technology' },
 
   ];
   constructor() { }
@@ -46,7 +46,7 @@ export class TemplateComponent implements OnInit {
     this.certifications = value.split('\n');
   }
   addEducation(){
-    this.educations.push(    { school: 'Master of Science in Mechanical Engineering', des: 'University of Engineering and Technology' },
+    this.educations.push(    { school: 'Bachloer of Tech in Electronics Engineering', des: 'University of Engineering and Technology' },
     )
   }
   onFileChanged(e: Event) {

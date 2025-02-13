@@ -3,12 +3,12 @@
   <div id="pdf-content" class="col"  style=" cursor: pointer;">
     <div class="text-center">
 
-      <input type="text" style="border:none;font-size:23px;font-weight: bold;" [(ngModel)]="username"  name="username"/>
+      <input type="text" class="text-center" style="border:none;font-size:23px;font-weight: bold;" [(ngModel)]="username"  name="username"/>
     </div>
-    <div class="text-center pt-3 justify-content-center d-flex ">
-      <textarea class=" no-border mr-2 no-resize wide-textarea hide-scrollbar col-4" style="width: auto;" [(ngModel)]="address" name="address" rows="2"></textarea>
-      <textarea class=" no-border mr-2 no-resize hide-scrollbar" [(ngModel)]="gmail" name="gmail" rows="1"></textarea>
-      <textarea class=" no-border mr-2 no-resize hide-scrollbar"  [(ngModel)]="mobile" name="mobile" rows="1"></textarea>
+    <div class="text-center justify-content-center d-flex ">
+      <textarea class=" col  text-center no-border mr-2 no-resize wide-textarea hide-scrollbar" style="font-weight: bold;" [(ngModel)]="address" name="address" rows="2"></textarea>
+      <textarea class="col text-center no-border mr-2 no-resize hide-scrollbar"  style="font-weight: bold;" [(ngModel)]="gmail" name="gmail" rows="1"></textarea>
+      <textarea class="col text-center no-border mr-2 no-resize hide-scrollbar"  style="font-weight: bold;"  [(ngModel)]="mobile" name="mobile" rows="1"></textarea>
     </div>
     <hr>
     <div>

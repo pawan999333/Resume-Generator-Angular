@@ -29,3 +29,8 @@ input,textarea{
 .hidden {
   display: none !important;
 }
+
+hr{
+  margin-top: 0;
+
+}
