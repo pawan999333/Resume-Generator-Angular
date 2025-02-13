@@ -67,9 +67,10 @@ export class TemplateComponent implements OnInit {
     if(element){
     const buttons = element.querySelectorAll('button');
     buttons.forEach(button => button.classList.add('hidden'));
+    const topMargin = window.innerWidth <= 768 ? 5 : 3;
 
     const options = {
-      margin: [2,0,0,0],
+      margin: [topMargin, 2, 0, 2],
       filename: 'template.pdf',
       image: { type: 'jpeg', quality: 0.98 },
       html2canvas: { scale: 2 },
