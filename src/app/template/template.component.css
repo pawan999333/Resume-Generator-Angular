@@ -9,9 +9,7 @@
 textarea:focus, input:focus {
   outline: none;
 }
-.wide-textarea {
-  width: 150%; /* Adjust the width as needed */
-}
+
 input,textarea{
   cursor:  pointer !important;
   font-size: 12px;
@@ -34,3 +32,36 @@ hr{
   margin-top: 0;
 
 }
+.no-border {
+  border: none;
+}
+
+
+
+
+
+
+/* .text-wrap {
+  word-wrap: break-word !important;
+  white-space: pre-wrap !important;
+}
+
+textarea {
+  word-break: break-word !important;
+  white-space: pre-wrap !important;
+  overflow-wrap: break-word !important;
+} */
+#pdf-content {
+  overflow: visible !important;
+  word-break: break-word;
+}
+
+
+.summaryText{
+  /* padding-bottom: 1%; */
+}
+/* @media (max-width: 768px) {
+  textarea {
+    font-size: 10px;
+  }
+} */
