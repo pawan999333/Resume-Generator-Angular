@@ -15,6 +15,8 @@ import { UrlComponent } from './url/url.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatOptionModule } from '@angular/material/core';
+import { MatMenuModule } from '@angular/material/menu'; // Import MatMenuModule
 
 @NgModule({
   declarations: [
@@ -33,7 +35,10 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 MatInputModule,
 MatButtonModule,
 MatIconModule,
-MatTooltipModule
+MatTooltipModule,
+MatOptionModule,
+MatMenuModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

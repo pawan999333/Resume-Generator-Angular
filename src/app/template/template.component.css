@@ -57,11 +57,25 @@ textarea {
 }
 
 
-.summaryText{
-  /* padding-bottom: 1%; */
+.linkes{
+  font-size: 12px;
 }
-/* @media (max-width: 768px) {
-  textarea {
+
+.summaryText{
+  padding-bottom: 1%;
+}
+@media (max-width: 768px) {
+ /* textarea{
+    font-size:12px !important;
+  } */
+  /* .linkes{
     font-size: 10px;
-  }
-} */
+  } */
+}
+.style-options {
+  display: none;
+}
+
+.d-flex:hover .style-options {
+  display: block;
+}

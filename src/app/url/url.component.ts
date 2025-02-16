@@ -10,7 +10,7 @@ export class UrlComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<UrlComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { url: string }
+    @Inject(MAT_DIALOG_DATA) public data: { url: string, text:string }
   ) {}
 
   onClose(): void {

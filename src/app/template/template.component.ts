@@ -16,9 +16,9 @@ export class TemplateComponent implements OnInit {
   username:any="Mike Johson";
   address:any='Bengluru,India 121212';
   gmail:any='abc@email.com';
-  mobile:any='1234567899';
+  mobile:any='+911234567899';
   summary:any='Results-oriented Engineering Executive with a proven track record of optimizing project outcomes. Skilled in strategic project management and team leadership. Seeking a challenging executive role to leverage technical expertise and drive engineering excellence.';
-
+  selectedLabel: any='textData';
   experience:any='1.Implemented cost-effective solutions, resulting in a 20% reduction in project expenses.Streamlined project workflows, enhancing overall efficiency by 25%.Led a team in successfully delivering a complex engineering project on time and within allocated budget.'
   company:any='google';
   hyperlink:any='https://www.linkedin.com/in/mike-johnson-123456789/';
@@ -40,17 +40,73 @@ export class TemplateComponent implements OnInit {
   projects: Array<{ name: any, data: any }> = [
     {name:'Resume Generator',data:'A web application to generate resume with different templates and download it in pdf format.'}
   ]
+  fontSizes: number[] = [12, 14, 16, 18];
+  selectedFontSizeTextData: number = 12;
+  selectedFontSizeColorAdd: number = 14;
+  selectedFontColor: string = '#800080';
+  private savedRange: Range | null = null;
+  selectedClassName: any;
+  selectSize: any;
+  selectedTextClassName: any;
+  selectedSectionClassName: any;
+  showPreviewOptions: boolean=false;
+
   constructor(public dialog: MatDialog,private renderer: Renderer2) { }
 
   ngOnInit(): void {
     console.log(this.fields);
     // this.adjustSummaryText();
   }
+  setSelectedLabel(label: string) {
+    this.selectedLabel = label;
+    console.log("label",this.selectedLabel,label)
+  }
+  preview(){
+    this.showPreviewOptions=!this.showPreviewOptions;
+  }
+  applyFontSize(className: string, size: number) {
+    console.log("class",className,size)
+    if(className=='textData'){
+      this.selectedTextClassName=className;
+    }
+    if(className=='sectionAdd'){
+      this.selectedSectionClassName=className;
+    }
+    this.selectSize=size;
+    // Apply the selected font size to the relevant elements
+    const elements = document.querySelectorAll(`.${className}`);
+    elements.forEach(element => {
+      (element as HTMLElement).style.fontSize = `${size}px`;
+    });
+  }
 
+  applyFontColor() {
+    // Apply the selected font color to the relevant elements
+    const elements = document.querySelectorAll('.colorAdd1');
+    elements.forEach(element => {
+      (element as HTMLElement).style.color = this.selectedFontColor;
+    });
+  }
 
 
   addField() {
     this.fields.push({ company: 'Microsoft', experience: 'Implemented cost-effective solutions, resulting in a 20% reduction in project expenses.Streamlined project workflows, enhancing overall efficiency by 25%.Led a team in successfully delivering a complex engineering project on time and within allocated budget.' });
+    if (this.selectedTextClassName && this.selectSize) {
+      setTimeout(() => {
+        const elements = document.querySelectorAll(`.${this.selectedTextClassName}`);
+        elements.forEach(element => {
+          (element as HTMLElement).style.fontSize = `${this.selectSize}px`;
+        });
+      }, 0);
+    }
+    if (this.selectedSectionClassName && this.selectSize) {
+      setTimeout(() => {
+        const elements = document.querySelectorAll(`.${this.selectedSectionClassName}`);
+        elements.forEach(element => {
+          (element as HTMLElement).style.fontSize = `${this.selectSize}px`;
+        });
+      }, 0);
+    }
   }
 
   updateCertifications(value: string) {
@@ -59,9 +115,39 @@ export class TemplateComponent implements OnInit {
   addEducation(){
     this.educations.push(    { school: 'Bachloer of Tech in Electronics Engineering', des: 'University of Engineering and Technology' },
     )
+    if (this.selectedTextClassName && this.selectSize) {
+      setTimeout(() => {
+        const elements = document.querySelectorAll(`.${this.selectedTextClassName}`);
+        elements.forEach(element => {
+          (element as HTMLElement).style.fontSize = `${this.selectSize}px`;
+        });
+      }, 0);
+    } if (this.selectedSectionClassName && this.selectSize) {
+      setTimeout(() => {
+        const elements = document.querySelectorAll(`.${this.selectedSectionClassName}`);
+        elements.forEach(element => {
+          (element as HTMLElement).style.fontSize = `${this.selectSize}px`;
+        });
+      }, 0);
+    }
   }
   addProject(){
     this.projects.push({name:'Resume Generator',data:'A web application to generate resume with different templates and download it in pdf format.'})
+    if (this.selectedTextClassName && this.selectSize) {
+      setTimeout(() => {
+        const elements = document.querySelectorAll(`.${this.selectedTextClassName}`);
+        elements.forEach(element => {
+          (element as HTMLElement).style.fontSize = `${this.selectSize}px`;
+        });
+      }, 0);
+    } if (this.selectedSectionClassName && this.selectSize) {
+      setTimeout(() => {
+        const elements = document.querySelectorAll(`.${this.selectedSectionClassName}`);
+        elements.forEach(element => {
+          (element as HTMLElement).style.fontSize = `${this.selectSize}px`;
+        });
+      }, 0);
+    }
   }
   onFileChanged(e: Event) {
     this.upload=true;
@@ -81,7 +167,8 @@ export class TemplateComponent implements OnInit {
   const dialogRef = this.dialog.open(UrlComponent, {
     width: '500px',
     data: {
-      url: this.hyperlink}
+      url: this.hyperlink,
+       text:'Linkedin'}
     })
     dialogRef
             .afterClosed()
@@ -92,12 +179,25 @@ export class TemplateComponent implements OnInit {
   const dialogRef = this.dialog.open(UrlComponent, {
     width: '500px',
     data: {
-      url: this.gmail}
+      url: this.gmail,
+     text:'Gmail'}
     })
     dialogRef
             .afterClosed()
             .subscribe(({res})=>
                 this.gmail=res
+            )
+ }if(data=='mobile'){
+  const dialogRef = this.dialog.open(UrlComponent, {
+    width: '500px',
+    data: {
+      url: this.mobile,
+     text:'Contact'}
+    })
+    dialogRef
+            .afterClosed()
+            .subscribe(({res})=>
+                this.mobile=res
             )
  }
 
@@ -117,6 +217,8 @@ export class TemplateComponent implements OnInit {
     if (element) {
       const buttons = element.querySelectorAll('button');
       const icons = element.querySelectorAll('mat-icon');
+      const previewData = element.querySelectorAll('div.previewDataSection');
+      previewData.forEach(data => data.classList.add('hidden'));
       buttons.forEach(button => button.classList.add('hidden'));
 
       icons.forEach(icon => {
@@ -149,11 +251,11 @@ export class TemplateComponent implements OnInit {
         replacements.push({textarea: textareaElement, p });
       });
       // Determine the top margin based on screen width
-      const topMargin = window.innerWidth <= 768 ? 2 : 10;
+      const topMargin = window.innerWidth <= 768 ? 10 : 10;
 
       const options = {
-        margin: [topMargin, 0, 0, 0],
-        filename: 'template.pdf',
+        margin: [topMargin, 2, 2, 2],
+        filename: 'resume.pdf',
         image: { type: 'jpeg', quality: 0.98 },
         html2canvas: { scale: 3, useCORS: true },
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
@@ -164,7 +266,7 @@ export class TemplateComponent implements OnInit {
         for (let i = 1; i <= totalPages; i++) {
           pdf.setPage(i);
           pdf.setFontSize(10);
-          pdf.text('Page ' + String(i) + ' of ' + String(totalPages), pdf.internal.pageSize.getWidth() - 20, pdf.internal.pageSize.getHeight() - 10);
+          // pdf.text('Page ' + String(i) + ' of ' + String(totalPages), pdf.internal.pageSize.getWidth() - 20, pdf.internal.pageSize.getHeight() - 10);
         }
       }).save().finally(() => {
         replacements.forEach(replacement => {

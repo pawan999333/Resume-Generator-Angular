@@ -1,50 +1,79 @@
 <div class="d-flex justify-content-center pt-3">
 <div class="col-md-7 col-lg-7 col-sm-12">
+  <!-- <div class="d-flex justify-content-between mb-1 p-2" style="border-radius:10px;background-color: #306aff50;">
+    <div class="d-flex align-items-center">
+      <label for="fontSizeLabels" style="text-decoration: underline;margin-bottom: 0;font-weight: bold; cursor: pointer;" [matMenuTriggerFor]="labelsMenu" matTooltip="Cilck to select">Font-Size</label>
+      <mat-menu #labelsMenu="matMenu">
+        <button mat-menu-item [matMenuTriggerFor]="fontSizeMenu" (click)="setSelectedLabel('textData')" (mouseenter)="setSelectedLabel('textData')">Text</button>
+        <button mat-menu-item [matMenuTriggerFor]="fontSizeMenu" (click)="setSelectedLabel('colorAdd')" (mouseenter)="setSelectedLabel('colorAdd')">Sections</button>
+        <button mat-menu-item [matMenuTriggerFor]="fontSizeMenu" (click)="setSelectedLabel('nameAdd')" (mouseenter)="setSelectedLabel('nameAdd')">Name</button>
+        <button mat-menu-item [matMenuTriggerFor]="fontSizeMenu" (click)="setSelectedLabel('sectionAdd')" (mouseenter)="setSelectedLabel('sectionAdd')">Title</button>
+      </mat-menu>
+    </div>
+    <div>
+
+    <div class="d-flex align-items-center">
+      <label for="fontColor" style="margin-bottom: 0;font-weight: bold; cursor: pointer;">Color:&nbsp;</label>
+      <input type="color" id="fontColor" [(ngModel)]="selectedFontColor" (change)="applyFontColor()">
+    </div>
+  </div>
+  <mat-menu #fontSizeMenu="matMenu">
+    <button mat-menu-item *ngFor="let size of fontSizes" (click)="applyFontSize(selectedLabel, size)">
+      {{size}}px
+    </button>
+  </mat-menu>
+  </div> -->
   <div id="pdf-content" class="col"  style=" cursor: pointer;">
     <div class="text-center">
-   <input type="text" class="text-center usernamei" style="border:none;font-size:23px;font-weight: bold;" [(ngModel)]="username"  name="username"/>
+   <input type="text" class="nameAdd colorAdd1 text-center usernamei" style="border:none;font-size:23px;font-weight: bold;color: purple;" [(ngModel)]="username"  name="username"/>
       <!-- <p class="text-center usernamep" style="border:none;font-size:23px;font-weight: bold;">{{username}}</p> -->
     </div>
     <div class="text-center justify-content-center d-flex pt-1 ">
       <!-- <textarea class=" col  text-center no-border mr-2 no-resize wide-textarea hide-scrollbar" style="font-weight: bold;" [(ngModel)]="address" name="address" rows="2"></textarea> -->
-      <div style="font-size: 12px;" class="d-flex justify-content-center align-items-center col">
-        <mat-icon (click)="addurl('linkedin')" matTooltip="Add Linkedin URL"
+      <div class="d-flex justify-content-center align-items-center linkes col">
+
+        <!-- <mat-icon (click)="addurl('linkedin')" matTooltip="Add Linkedin URL"
         style="
-        color: #000000;">link</mat-icon>
-      <a [href]="hyperlink" target="_blank"
+        color: #000000;">link</mat-icon> -->
+        <i class="fab fa-linkedin" (click)="addurl('linkedin')" matTooltip="Click to Add LinkedIn" style="color: #000000;"></i>
+
+      <a [href]="hyperlink" target="_blank" class="pl-1"
     style="  text-decoration: underline;
       font-weight: bold;
-      color: #000000;">linkedin</a>
+      color: #000000;">Linkedin</a>
       </div>
-      <div class="d-flex justify-content-center align-items-center col" style="font-size: 12px;">
-        <mat-icon (click)="addurl('gmail')" matTooltip="Add Email"
-        style="
-        color: #000000;">email</mat-icon>
-      <a [href]="'mailto:' +gmail" target="_blank"
+      <div class="d-flex justify-content-center align-items-center linkes col">
+
+         <i class="fas fa-envelope" (click)="addurl('gmail')" matTooltip="Click to Add Email" style="color: #000000;"></i>
+      <a [href]="'mailto:' +gmail" target="_blank" class="pl-1"
     style="  text-decoration: underline;
       font-weight: bold;
-      color: #000000;">gmail</a>
+      color: #000000;">Email</a>
+      </div>
+      <div class="d-flex justify-content-center align-items-center linkes col">
+        <i class="fab fa-whatsapp" (click)="addurl('mobile')" matTooltip="Click to Add Phone" style="color: #000000;"></i>
+        <a [href]="'https://wa.me/' + mobile" target="_blank" class="pl-1" style="text-decoration: underline; font-weight: bold; color: #000000;">Contact</a>
       </div>
       <!-- <textarea class="col text-center no-border mr-2 no-resize hide-scrollbar"  style="font-weight: bold;" [(ngModel)]="gmail" name="gmail" rows="1"></textarea> -->
-      <textarea class="col justify-content-center text-center no-border mr-2 no-resize hide-scrollbar"  style="font-weight: bold;font-size: 12px;"  [(ngModel)]="mobile" name="mobile" rows="1"></textarea>
+      <!-- <textarea class="col justify-content-center text-center no-border mr-2 no-resize linkes hide-scrollbar"  style="font-weight: bold;"  [(ngModel)]="mobile" name="mobile" rows="1"></textarea> -->
     </div>
     <hr class="mb-0 pb-1 pt-1">
     <div>
-      <h4 style="font-weight: bold; color: purple;" class="mb-0">Summary</h4>
-      <textarea class="summaryText longtext no-resize hide-scrollbar no-border  mr-2 " style="width: 100%;font-size: 13px;" [(ngModel)]="summary" name="summary"  (input)="autoResize($event)" ></textarea>
+      <h4 style="font-weight: bold; color: purple;" class="mb-0 colorAdd1 colorAdd">Summary</h4>
+      <textarea class="textData summaryText longtext no-resize hide-scrollbar no-border  mr-2 " style="width: 100%;font-size: 13px;" [(ngModel)]="summary" name="summary"  (input)="autoResize($event)" ></textarea>
     </div>
     <hr class="mb-0 pb-1">
     <div>
       <div class="d-flex justify-content-between">
-      <h4 style="font-weight: bold; color: purple;" class="mb-0">Work Experience</h4>
+      <h4 style="font-weight: bold; color: purple;" class="mb-0 colorAdd1 colorAdd">Work Experience</h4>
       <!-- <button mat-icon-button  (click)="addField()"> -->
-        <mat-icon (click)="addField()">add</mat-icon>
+        <mat-icon (click)="addField()" *ngIf="!showPreviewOptions">add</mat-icon>
       <!-- </button> -->
     </div>
 
       <div *ngFor="let field of fields; let i = index">
-        <input class="no-border mr-2 no-resize mb-0" style="width: 100%;font-weight: bold;font-size: 15px;" [(ngModel)]="field.company" name="company{{i}}">
-        <textarea class="longtext no-border mr-2 no-resize hide-scrollbar" style="width: 100%;font-size: 13px;" [(ngModel)]="field.experience" name="experience{{i}}" (input)="autoResize($event)" rows="2" ></textarea>
+        <input class="sectionAdd no-border mr-2 no-resize mb-0" style="width: 100%;font-weight: bold;font-size: 15px;" [(ngModel)]="field.company" name="company{{i}}">
+        <textarea class="textData longtext no-border mr-2 no-resize hide-scrollbar" style="width: 100%;font-size: 13px;" [(ngModel)]="field.experience" name="experience{{i}}" (input)="autoResize($event)" rows="2" ></textarea>
       </div>
       <hr class="mb-0 pb-1">
 
@@ -52,42 +81,73 @@
     <div>
       <div class="d-flex justify-content-between">
 
-      <h4 style="font-weight: bold; color: purple;" class="mb-0">Education</h4>
+      <h4 style="font-weight: bold; color: purple;" class="mb-0 colorAdd1 colorAdd">Education</h4>
       <!-- <button class="btn btn-primary" (click)="addEducation()">Add</button> -->
-      <mat-icon (click)="addEducation()">add</mat-icon>
+      <mat-icon (click)="addEducation()" *ngIf="!showPreviewOptions">add</mat-icon>
       </div>
       <div *ngFor="let field of educations; let i = index">
-        <input class="no-border mr-2 no-resize" style="width: 100%;font-weight: bold;font-size: 15px;" [(ngModel)]="field.school" name="school{{i}}">
-        <textarea class="longtext no-border mr-2 no-resize hide-scrollbar" style="width: 100%;font-size: 13px;" [(ngModel)]="field.des" name="des{{i}}" (input)="autoResize($event)" rows="1" ></textarea>
+        <input class="sectionAdd no-border mr-2 no-resize" style="width: 100%;font-weight: bold;font-size: 15px;" [(ngModel)]="field.school" name="school{{i}}">
+        <textarea class="textData longtext no-border mr-2 no-resize hide-scrollbar" style="width: 100%;font-size: 13px;" [(ngModel)]="field.des" name="des{{i}}" (input)="autoResize($event)" rows="1" ></textarea>
       </div>
       <hr class="mb-0 pb-1">
       <div class="d-flex justify-content-between">
 
-      <h4 style="font-weight: bold; color: purple;" class="mb-0">Projects</h4>
+      <h4 style="font-weight: bold; color: purple;" class="mb-0 colorAdd1 colorAdd">Projects</h4>
       <!-- <button class="btn btn-primary" (click)="addEducation()">Add</button> -->
-      <mat-icon (click)="addProject()">add</mat-icon>
+      <mat-icon (click)="addProject()" *ngIf="!showPreviewOptions">add</mat-icon>
       </div>
       <div *ngFor="let project of projects; let i = index">
-        <input class="no-border mr-2 no-resize mb-0" style="width: 100%;font-weight: bold;font-size: 15px;" [(ngModel)]="project.name" name="name{{i}}">
-        <textarea class="longtext no-border mr-2 no-resize hide-scrollbar" style="width: 100%;font-size: 13px;" [(ngModel)]="project.data" (input)="autoResize($event)" name="data{{i}}" rows="2" ></textarea>
+        <input class="sectionAdd no-border mr-2 no-resize mb-0" style="width: 100%;font-weight: bold;font-size: 15px;" [(ngModel)]="project.name" name="name{{i}}">
+        <textarea class="textData longtext no-border mr-2 no-resize hide-scrollbar" style="width: 100%;font-size: 13px;" [(ngModel)]="project.data" (input)="autoResize($event)" name="data{{i}}" rows="1" ></textarea>
+        <hr class="mb-0 pb-1">
       </div>
-      <hr class="mb-0 pb-1">
       <div>
-        <h4 style="font-weight: bold; color: purple;" class="mb-0">Skills</h4>
-        <textarea class=" no-border mr-2 no-resize hide-scrollbar" style="width: 100%;font-size: 13px;" (input)="autoResize($event)" [(ngModel)]="skills" name="skills" rows="1" ></textarea>
+        <h4 style="font-weight: bold; color: purple;" class="mb-0 colorAdd1 colorAdd">Skills</h4>
+        <textarea class="textData longtext no-border mr-2 no-resize hide-scrollbar" style="width: 100%;font-size: 13px;" (input)="autoResize($event)" [(ngModel)]="skills" name="skills" rows="1" ></textarea>
 
         <hr class="mb-0 pb-1">
 
       </div>
       <div>
-        <h4 style="font-weight: bold; color: purple;" class="mb-0">Certifications & Acchievements</h4>
-        <textarea class="longtext no-border mr-2 no-resize hide-scrollbar" (input)="autoResize($event)" (ngModelChange)="updateCertifications($event)" name="certifications" style="width: 100%;" [(ngModel)]="certificationsString" name="certifications" rows="3" ></textarea>
+        <h4 style="font-weight: bold; color: purple;" class="mb-0 colorAdd1 colorAdd">Certifications & Acchievements</h4>
+        <textarea class="textData longtext no-border mr-2 no-resize hide-scrollbar" (input)="autoResize($event)" (ngModelChange)="updateCertifications($event)" name="certifications" style="width: 100%;" [(ngModel)]="certificationsString" name="certifications" rows="2" ></textarea>
 
         <hr class="mb-0 pb-1">
 
       </div>
 
 
+    </div>
+    <div class="col d-flex justify-content-center pt-1" *ngIf="!showPreviewOptions"
+    >
+
+      <button mat-stroked-button color="primary" (click)="preview()" style="    border: none;
+    text-decoration: underline;">Preview Options</button>
+    </div>
+    <div *ngIf="showPreviewOptions" class="d-flex previewDataSection justify-content-between mb-1 p-2">
+      <div class="d-flex align-items-center">
+        <label for="fontSizeLabels" class="p-2"style="margin-bottom: 0;font-weight: 500; cursor: pointer; border-radius: 5px;
+        background:#3f51b5; color:#ffffff;
+        " [matMenuTriggerFor]="labelsMenu" matTooltip="Cilck to select">Font-Size</label>
+        <mat-menu #labelsMenu="matMenu">
+          <button mat-menu-item [matMenuTriggerFor]="fontSizeMenu" (click)="setSelectedLabel('textData')" (mouseenter)="setSelectedLabel('textData')">Text</button>
+          <button mat-menu-item [matMenuTriggerFor]="fontSizeMenu" (click)="setSelectedLabel('colorAdd')" (mouseenter)="setSelectedLabel('colorAdd')">Sections</button>
+          <button mat-menu-item [matMenuTriggerFor]="fontSizeMenu" (click)="setSelectedLabel('nameAdd')" (mouseenter)="setSelectedLabel('nameAdd')">Name</button>
+          <button mat-menu-item [matMenuTriggerFor]="fontSizeMenu" (click)="setSelectedLabel('sectionAdd')" (mouseenter)="setSelectedLabel('sectionAdd')">Title</button>
+        </mat-menu>
+      </div>
+      <div>
+
+      <div class="d-flex align-items-center">
+        <label for="fontColor" style="margin-bottom: 0;font-weight: bold; cursor: pointer;">Color:&nbsp;</label>
+        <input matTooltip="Click to select" style="border:none" type="color" id="fontColor" [(ngModel)]="selectedFontColor" (change)="applyFontColor()">
+      </div>
+    </div>
+    <mat-menu #fontSizeMenu="matMenu">
+      <button mat-menu-item *ngFor="let size of fontSizes" (click)="applyFontSize(selectedLabel, size)">
+        {{size}}px
+      </button>
+    </mat-menu>
     </div>
 <div class="col d-flex justify-content-center pt-1">
 
