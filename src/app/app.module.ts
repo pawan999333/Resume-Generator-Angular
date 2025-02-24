@@ -16,16 +16,28 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatOptionModule } from '@angular/material/core';
-import { MatMenuModule } from '@angular/material/menu'; // Import MatMenuModule
+import { MatMenuModule } from '@angular/material/menu';
+import { SamplesComponent } from './samples/samples.component'; // Import MatMenuModule
+import { RouterModule } from '@angular/router';
+import { Template2Component } from './template2/template2.component';
+import { LoginComponent } from './login/login.component';
+import { Template3Component } from './template3/template3.component';
+import { Template4Component } from './template4/template4.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
     AppComponent,
     TemplateComponent,
-    UrlComponent
+    UrlComponent,
+    SamplesComponent,
+    Template2Component,
+    LoginComponent,
+    Template3Component,
+    Template4Component
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
@@ -37,8 +49,8 @@ MatButtonModule,
 MatIconModule,
 MatTooltipModule,
 MatOptionModule,
-MatMenuModule
-
+MatMenuModule,
+MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

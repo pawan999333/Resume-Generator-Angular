@@ -1,0 +1,81 @@
+.no-border {
+  border: none;
+}
+
+.no-resize {
+  resize: none;
+}
+
+textarea:focus, input:focus {
+  outline: none;
+}
+
+input,textarea{
+  cursor:  pointer !important;
+  font-size: 12px;
+}
+.hide-scrollbar {
+  overflow-y: scroll; /* Enable vertical scrolling */
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none;  /* For Internet Explorer and Edge */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
+}
+
+.hidden {
+  display: none !important;
+}
+
+hr{
+  margin-top: 0;
+
+}
+.no-border {
+  border: none;
+}
+
+
+
+
+
+
+/* .text-wrap {
+  word-wrap: break-word !important;
+  white-space: pre-wrap !important;
+}
+
+textarea {
+  word-break: break-word !important;
+  white-space: pre-wrap !important;
+  overflow-wrap: break-word !important;
+} */
+#pdf-content {
+  overflow: visible !important;
+  word-break: break-word;
+}
+
+
+.linkes{
+  font-size: 12px;
+}
+
+.summaryText{
+  padding-bottom: 1%;
+}
+@media (max-width: 768px) {
+ /* textarea{
+    font-size:12px !important;
+  } */
+  /* .linkes{
+    font-size: 10px;
+  } */
+}
+.style-options {
+  display: none;
+}
+
+.d-flex:hover .style-options {
+  display: block;
+}

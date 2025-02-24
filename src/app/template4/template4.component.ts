@@ -6,13 +6,14 @@ import html2canvas from 'html2canvas';
 import { MatDialog } from '@angular/material/dialog';
 import { UrlComponent } from '../url/url.component';
 @Component({
-  selector: 'app-template',
-  templateUrl: './template.component.html',
-  styleUrls: ['./template.component.css']
+  selector: 'app-template4',
+  templateUrl: './template4.component.html',
+  styleUrls: ['./template4.component.css']
 })
-
-export class TemplateComponent implements OnInit {
+export class Template4Component implements OnInit {
   url: any;
+  isLoading: boolean = false;
+
   upload: boolean=false;
   username:any="Mike Johson";
   address:any='Bengluru,India 121212';
@@ -23,13 +24,17 @@ export class TemplateComponent implements OnInit {
   experience:any='1.Implemented cost-effective solutions, resulting in a 20% reduction in project expenses.Streamlined project workflows, enhancing overall efficiency by 25%.Led a team in successfully delivering a complex engineering project on time and within allocated budget.'
   company:any='google';
   hyperlink:any='https://www.linkedin.com/in/mike-johnson-123456789/';
-  skills:any=['Java, Angular, HTML, Css, Bootstrap, Nodejs'];
+  skills:any=['1. Angular',
+    '2. HTML',
+    '3. Project Management',
+  ]
+
   certifications:any=[
    '1. Certified Project Management (PMP)',
    '2. Udemy Angular Certification'
   ];
   certificationsString: string = this.certifications.join('\n');
-
+  skillsString: string = this.skills.join('\n');
   fields: Array<{ company: any,position:any, experience: any }> = [
     { company: 'google',position:'SDE (Jan-2024 - Feb-2025)', experience: '1.Implemented cost-effective solutions, resulting in a 20% reduction in project expenses.Streamlined project workflows, enhancing overall efficiency by 25%.Led a team in successfully delivering a complex engineering project on time and within allocated budget.' },
 
@@ -51,6 +56,7 @@ export class TemplateComponent implements OnInit {
   selectedTextClassName: any;
   selectedSectionClassName: any;
   showPreviewOptions: boolean=false;
+  showData: boolean=true;
 
   constructor(public dialog: MatDialog,private renderer: Renderer2) { }
 
@@ -111,7 +117,9 @@ export class TemplateComponent implements OnInit {
       }, 0);
     }
   }
-
+  updateSkills(value: string) {
+    this.certifications = value.split('\n');
+  }
   updateCertifications(value: string) {
     this.certifications = value.split('\n');
   }
@@ -217,19 +225,26 @@ export class TemplateComponent implements OnInit {
   }
   downloadPDF() {
     const element = document.getElementById('pdf-content');
-    if (element) {
-      const buttons = element.querySelectorAll('button');
-      const icons = element.querySelectorAll('mat-icon');
-      const previewData = element.querySelectorAll('div.previewDataSection');
-      previewData.forEach(data => data.classList.add('hidden'));
-      buttons.forEach(button => button.classList.add('hidden'));
+    const cloneContainer = document.getElementById('pdf-clone-container');
+    if (element && cloneContainer) {
+      // Clone the element to avoid modifying the original UI
+      const clone = element.cloneNode(true) as HTMLElement;
+      cloneContainer.appendChild(clone);
+
+      const buttons = clone.querySelectorAll('button');
+      const icons = clone.querySelectorAll('mat-icon');
+      const previewData = clone.querySelectorAll('div.previewDataSection');
+      previewData.forEach(data => data.classList.add('hidden-in-pdf'));
+
+      buttons.forEach(button => button.classList.add('hidden-in-pdf'));
 
       icons.forEach(icon => {
         if (icon.textContent?.trim() === 'add') {
-          icon.classList.add('hidden');
+          icon.classList.add('hidden-in-pdf');
         }
       });
-      const inputs = element.querySelectorAll('input.usernamei');
+
+      const inputs = clone.querySelectorAll('input.usernamei');
       const replacements2: { input: HTMLInputElement, p: HTMLParagraphElement }[] = [];
       inputs.forEach(input => {
         const p = document.createElement('p');
@@ -239,7 +254,8 @@ export class TemplateComponent implements OnInit {
         input.parentNode?.replaceChild(p, input);
         replacements2.push({ input: input as HTMLInputElement, p });
       });
-      const textareas = element.querySelectorAll('textarea.longtext');
+
+      const textareas = clone.querySelectorAll('textarea.longtext');
       const replacements: { textarea: HTMLTextAreaElement, p: HTMLParagraphElement }[] = [];
       textareas.forEach(textarea => {
         const textareaElement = textarea as HTMLTextAreaElement;
@@ -247,31 +263,35 @@ export class TemplateComponent implements OnInit {
         const p = document.createElement('p');
         p.className = textarea.className;
         p.style.cssText = textareaElement.style.cssText;
-        // p.textContent = textareaElement.value;
         p.innerHTML = textareaElement.value.replace(/\n/g, '<br>'); // Replace newline characters with <br> tags
 
         textarea.parentNode?.replaceChild(p, textarea);
-        replacements.push({textarea: textareaElement, p });
+        replacements.push({ textarea: textareaElement, p });
       });
-      // Determine the top margin based on screen width
+
+      // Apply PDF-specific styles
+      const col4Elements = clone.querySelectorAll('.col-sm-4');
+      const col8Elements = clone.querySelectorAll('.col-sm-8');
+      col4Elements.forEach(col4 => col4.classList.add('pdf-col-2'));
+      col8Elements.forEach(col8 => col8.classList.add('pdf-col-10'));
       const topMargin = window.innerWidth <= 768 ? 10 : 10;
 
+
       const options = {
-        margin: 0,
+        margin: 0, // Set margins to zero
+
         filename: 'resume.pdf',
         image: { type: 'jpeg', quality: 0.98 },
         html2canvas: { scale: 3, useCORS: true },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+        jsPDF: { unit: 'mm',format: 'a4', orientation: 'portrait' },
         pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
-
       };
 
-      html2pdf().from(element).set(options).toPdf().get('pdf').then(function (pdf: jsPDF) {
+      html2pdf().from(clone).set(options).toPdf().get('pdf').then(function (pdf: jsPDF) {
         const totalPages = pdf.internal.pages.length - 1;
         for (let i = 1; i <= totalPages; i++) {
           pdf.setPage(i);
           pdf.setFontSize(10);
-          // pdf.text('Page ' + String(i) + ' of ' + String(totalPages), pdf.internal.pageSize.getWidth() - 20, pdf.internal.pageSize.getHeight() - 10);
         }
       }).save().finally(() => {
         replacements.forEach(replacement => {
@@ -280,16 +300,103 @@ export class TemplateComponent implements OnInit {
         replacements2.forEach(replacement => {
           replacement.p.parentNode?.replaceChild(replacement.input, replacement.p);
         });
-        buttons.forEach(button => button.classList.remove('hidden'));
+        buttons.forEach(button => button.classList.remove('hidden-in-pdf'));
         icons.forEach(icon => {
           if (icon.textContent?.trim() === 'add') {
-            icon.classList.remove('hidden');
+            icon.classList.remove('hidden-in-pdf');
           }
         });
+
+        // Remove the cloned element from the hidden container
+        cloneContainer.removeChild(clone);
       });
     }
   }
 
+  // downloadPDF() {
+  //   this.showData = false;
+  //   this.isLoading = true;
 
+  //   const element = document.getElementById('pdf-content');
+  //   if (element) {
+  //     const buttons = element.querySelectorAll('button');
+  //     const icons = element.querySelectorAll('mat-icon');
+  //     const previewData = element.querySelectorAll('div.previewDataSection');
+  //     const col2Elements = element.querySelectorAll('.col-sm-4');
+
+  //     previewData.forEach(data => data.classList.add('hidden'));
+  //     buttons.forEach(button => button.classList.add('hidden'));
+  //     col2Elements.forEach(col2 => col2.classList.add('pdf-col-2'));
+
+  //     icons.forEach(icon => {
+  //       if (icon.textContent?.trim() === 'add') {
+  //         icon.classList.add('hidden');
+  //       }
+  //     });
+
+  //     const inputs = element.querySelectorAll('input.usernamei');
+  //     const replacements2: { input: HTMLInputElement, p: HTMLParagraphElement }[] = [];
+  //     inputs.forEach(input => {
+  //       const p = document.createElement('p');
+  //       p.className = input.className.replace('usernamei', 'usernamep');
+  //       p.style.cssText = (input as HTMLInputElement).style.cssText;
+  //       p.textContent = (input as HTMLInputElement).value;
+  //       input.parentNode?.replaceChild(p, input);
+  //       replacements2.push({ input: input as HTMLInputElement, p });
+  //     });
+
+  //     const textareas = element.querySelectorAll('textarea.longtext');
+  //     const replacements: { textarea: HTMLTextAreaElement, p: HTMLParagraphElement }[] = [];
+  //     textareas.forEach(textarea => {
+  //       const textareaElement = textarea as HTMLTextAreaElement;
+
+  //       const p = document.createElement('p');
+  //       p.className = textarea.className;
+  //       p.style.cssText = textareaElement.style.cssText;
+  //       p.innerHTML = textareaElement.value.replace(/\n/g, '<br>'); // Replace newline characters with <br> tags
+
+  //       textarea.parentNode?.replaceChild(p, textarea);
+  //       replacements.push({ textarea: textareaElement, p });
+  //     });
+
+  //     const topMargin = window.innerWidth <= 768 ? 5 : 5;
+
+  //     const options = {
+  //       margin:0, // Set margins to zero
+  //       filename: 'resume.pdf',
+  //       image: { type: 'jpeg', quality: 0.98 },
+  //       html2canvas: { scale: 3, useCORS: true },
+  //       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+  //       pagebreak: { mode: ['avoid-all', 'css', 'legacy'] } // Avoid breaking elements across pages
+  //     };
+
+  //     // Set showData to true immediately after starting the PDF generation process
+  //     this.showData = true;
+
+  //     html2pdf().from(element).set(options).toPdf().get('pdf').then(function (pdf: jsPDF) {
+  //       const totalPages = pdf.internal.pages.length - 1;
+  //       for (let i = 1; i <= totalPages; i++) {
+  //         pdf.setPage(i);
+  //         pdf.setFontSize(10);
+  //       }
+  //     }).save().finally(() => {
+  //       replacements.forEach(replacement => {
+  //         replacement.p.parentNode?.replaceChild(replacement.textarea, replacement.p);
+  //       });
+  //       replacements2.forEach(replacement => {
+  //         replacement.p.parentNode?.replaceChild(replacement.input, replacement.p);
+  //       });
+  //       buttons.forEach(button => button.classList.remove('hidden'));
+  //       icons.forEach(icon => {
+  //         if (icon.textContent?.trim() === 'add') {
+  //           icon.classList.remove('hidden');
+  //         }
+  //       });
+  //       col2Elements.forEach(col2 => col2.classList.remove('pdf-col-2'));
+
+  //       this.isLoading = false;
+  //     });
+  //   }
+  // }
 
 }

@@ -1,0 +1,114 @@
+.no-border {
+  border: none;
+}
+
+.no-resize {
+  resize: none;
+}
+
+textarea:focus, input:focus {
+  outline: none;
+}
+
+input,textarea{
+  cursor:  pointer !important;
+  font-size: 12px;
+}
+.hide-scrollbar {
+  overflow-y: scroll; /* Enable vertical scrolling */
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none;  /* For Internet Explorer and Edge */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
+}
+
+.hidden {
+  display: none !important;
+}
+
+hr{
+  margin-top: 0;
+
+}
+.no-border {
+  border: none;
+}
+
+
+
+
+
+
+/* .text-wrap {
+  word-wrap: break-word !important;
+  white-space: pre-wrap !important;
+}
+
+textarea {
+  word-break: break-word !important;
+  white-space: pre-wrap !important;
+  overflow-wrap: break-word !important;
+} */
+#pdf-content {
+  overflow: visible !important;
+  word-break: break-word;
+}
+.col-lg-2{
+  width:50% !important
+}
+.pdf-col-2 {
+  width: 18.66667% !important;
+
+}
+.hidden-in-pdf {
+  display: none !important;
+}
+.pdf-col-10{
+  width: 81.33333% !important; /* Equivalent to col-10 */
+}
+.linkes{
+  font-size: 15px;
+}
+
+.summaryText{
+  padding-bottom: 1%;
+}
+.pdf-col-2 {
+  width: 16.66667% !important;
+
+}
+
+.pdf-col-10{
+  width: 83.33333% !important; /* Equivalent to col-10 */
+}
+@media (max-width: 768px) {
+ /* textarea{
+    font-size:12px !important;
+  } */
+  /* .linkes{
+    font-size: 10px;
+  } */
+}
+
+.col-sm-4{
+  width: 50% !important;
+}
+.pdf-col-2 {
+  width: 16.66667% !important;
+
+}
+.hidden-in-pdf {
+  display: none !important;
+}
+.pdf-col-10{
+  width: 83.33333% !important; /* Equivalent to col-10 */
+}
+.style-options {
+  display: none;
+}
+
+.d-flex:hover .style-options {
+  display: block;
+}

@@ -6,12 +6,11 @@ import html2canvas from 'html2canvas';
 import { MatDialog } from '@angular/material/dialog';
 import { UrlComponent } from '../url/url.component';
 @Component({
-  selector: 'app-template',
-  templateUrl: './template.component.html',
-  styleUrls: ['./template.component.css']
+  selector: 'app-template2',
+  templateUrl: './template2.component.html',
+  styleUrls: ['./template2.component.css']
 })
-
-export class TemplateComponent implements OnInit {
+export class Template2Component implements OnInit {
   url: any;
   upload: boolean=false;
   username:any="Mike Johson";
@@ -31,7 +30,7 @@ export class TemplateComponent implements OnInit {
   certificationsString: string = this.certifications.join('\n');
 
   fields: Array<{ company: any,position:any, experience: any }> = [
-    { company: 'google',position:'SDE (Jan-2024 - Feb-2025)', experience: '1.Implemented cost-effective solutions, resulting in a 20% reduction in project expenses.Streamlined project workflows, enhancing overall efficiency by 25%.Led a team in successfully delivering a complex engineering project on time and within allocated budget.' },
+    { company: 'google', position:'SDE (Jan-2024 - Feb-2025)', experience: '1.Implemented cost-effective solutions, resulting in a 20% reduction in project expenses.Streamlined project workflows, enhancing overall efficiency by 25%.Led a team in successfully delivering a complex engineering project on time and within allocated budget.' },
 
   ];
   educations: Array<{ school: any, des: any }> = [
@@ -44,7 +43,7 @@ export class TemplateComponent implements OnInit {
   fontSizes: number[] = [12, 14, 16, 18];
   selectedFontSizeTextData: number = 12;
   selectedFontSizeColorAdd: number = 14;
-  selectedFontColor: string = '#800080';
+  selectedFontColor: string = '#808080';
   private savedRange: Range | null = null;
   selectedClassName: any;
   selectSize: any;
@@ -93,7 +92,7 @@ export class TemplateComponent implements OnInit {
 
 
   addField() {
-    this.fields.push({ company: 'Microsoft',position:'SDE (Jan-2024 - Feb-s024)', experience: 'Implemented cost-effective solutions, resulting in a 20% reduction in project expenses.Streamlined project workflows, enhancing overall efficiency by 25%.Led a team in successfully delivering a complex engineering project on time and within allocated budget.' });
+    this.fields.push({ company: 'Microsoft',position:'SDE (Jan-2024 - Feb-2025)', experience: 'Implemented cost-effective solutions, resulting in a 20% reduction in project expenses.Streamlined project workflows, enhancing overall efficiency by 25%.Led a team in successfully delivering a complex engineering project on time and within allocated budget.' });
     if (this.selectedTextClassName && this.selectSize) {
       setTimeout(() => {
         const elements = document.querySelectorAll(`.${this.selectedTextClassName}`);
