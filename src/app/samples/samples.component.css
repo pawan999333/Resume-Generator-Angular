@@ -1,5 +1,5 @@
 
-img{
+.imgsection{
   object-fit: contain;
   /* height: 50%; */
   /* width: 40%; */
@@ -7,18 +7,29 @@ img{
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6); /* Add shadow effect */
     /* border: 2px solid blue; */
     width: 90%;
+    background: #000000;
+    border: 3px solid blue;
+    cursor:  pointer !important;
     /* transition: background-color 0.3s ease; */
 }
-img:hover {
+.imgsection:hover {
   box-shadow: 0 4px 15px rgba(79, 124, 123, 0.99);
 }
-
+.logoImg{
+  width: 2% !important;
+}
 
 .data{
   overflow:hidden
 }
 @media(max-width:768px){
-  h2{
+ h1{
+  font-size: 20px;
+ }
+ .logoImg{
+  width: 7% !important;
+}
+ h2{
     font-size: 15px !important;
   }
 }
