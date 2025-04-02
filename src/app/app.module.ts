@@ -28,13 +28,12 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 @NgModule({
   declarations: [
     AppComponent,
-    TemplateComponent,
+
     UrlComponent,
-    SamplesComponent,
-    Template2Component,
+
     LoginComponent,
-    Template3Component,
-    Template4Component
+
+
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

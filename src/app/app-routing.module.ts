@@ -8,19 +8,14 @@ import { Template4Component } from './template4/template4.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'samples', pathMatch: 'full' },
-  { path: 'samples', component: SamplesComponent },
-  {path:'template1',
-    component:TemplateComponent
-  },
-  {path:'template2',
-    component:Template2Component
-  },
-  {path:'template3',
-    component:Template3Component
-  },
-  {path:'template4',
-    component:Template4Component
-  }
+  { path: 'samples', loadChildren: () => import('./samples/samples.module').then(m => m.SamplesModule) },
+  { path: 'template1', loadChildren: () => import('./template/template.module').then(m => m.TemplateModule) },
+  { path: 'template2', loadChildren: () => import('./template2/template2.module').then(m => m.Template2Module) },
+  { path: 'template3', loadChildren: () => import('./template3/template3.module').then(m => m.Template3Module) },
+  { path: 'template4', loadChildren: () => import('./template4/template4.module').then(m => m.Template4Module) },
+
+
+
 ];
 
 @NgModule({

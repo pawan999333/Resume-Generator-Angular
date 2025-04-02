@@ -1,3 +1,9 @@
+// Mock navigator for SSR
+(global as any).self = global;
+
+(global as any).navigator = {
+  userAgent: 'SSR',
+};
 import 'zone.js/dist/zone-node';
 
 import { ngExpressEngine } from '@nguniversal/express-engine';
